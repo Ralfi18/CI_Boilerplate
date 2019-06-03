@@ -38,11 +38,31 @@ class Admin_Controller extends MY_Controller {
 
   public function login($params = null){
     $this->load->helper('form');
+    /**
+     * resources to be loaded in header and footer
+     * $resources['headeCss', 'headeJs', 'footerJs'] : [] || null
+     */
     $resources['headeCss'] = ['bootstrap.min.css', 'main.css'];
     $resources['headeJs'] = null;
     $resources['footerJs'] = ['bootstrap.min.js'];
+    /**
+     * data to be loaded in the pages
+     * $data: any
+     */
     $data['login_data'] = 'some data';
-    $this->mainLayout('admin/login', $data, $resources, 'Login Page');
-    // $this->load->view('admin/login', $data);
+    /**
+     * pages to be loaded in the main view file 
+     * $pages: string || []
+     */
+    $pages = ['admin/login', 'admin/sidebar'];
+    /**
+     * mainLayout type function
+     * params: 
+     * $pages: [] || string
+     * $data: any
+     * $resources: []
+     * $title" string
+     */
+    $this->mainLayout($pages, $data, $resources, 'Login Page');
   }
 }
