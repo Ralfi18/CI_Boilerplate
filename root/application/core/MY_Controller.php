@@ -1,6 +1,5 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 /*
  * Base controller
  */ 
@@ -20,84 +19,83 @@ class Public_Controller extends MY_Controller {
  * Admin base controller extendig the basic controller
  */ 
 class Admin_Controller extends MY_Controller {
-  protected $_sessionObject = null;
+  // protected $session = null;
   public function __construct()
-   
 	{
     parent::__construct();
-    $this->load->library('custom_session');
+    // libs
+    $this->load->library('session');
     $this->load->library('layout_generator');
+    // helpers
     $this->load->helper('form');
-    $this->_sessionObject = $this->custom_session::getInstance();
     $alowedRoutes = ["backend/login", "backend/validateLogin", "backend/logout"];
-    if (!isset($_SESSION['logged_in']) && !in_array(uri_string(), $alowedRoutes)){
-      header("Location: /backend/login");
+    if ($this->session->time && $this->session->time < time()) {
+      $this->session->sess_destroy();
+      redirect("backend/login");
       exit();
     }
-  }
-
-  /**
-   * mainLayout type function
-   * params: 
-   * $pages: [] || string
-   * $data: any
-   * $resources: []
-   * $title" string
-   */
-  // DEPRECATED 
-  public function mainLayout($view = null, $vars = null, $resources = [], $title = '')
-  {
-    // TODO: chage to OOP and make to Library make and path to mai layout option (for reuse)
-    if ($view) {
-      /**
-       * resources to be loaded in header and footer
-       * $resources['headeCss', 'headeJs', 'footerJs'] : [] || null
-       */
-      $data['headeCss'] = $resources['headeCss'];
-      $data['headeJs']  = $resources['headeJs'];
-      $data['footerJs'] = $resources['footerJs'];
-      /*
-       *  title of the page
-       */
-      $data['title']    = $title;
-      /**
-       * pages to be loaded in the main view file 
-       * $pages: string || []
-       */
-      $data['page']     = $view;
-      /**
-       * data to be loaded in the pages
-       * $data: any
-       */
-      $data['data']     = $vars;
-      /**
-       *  Load main template width header and footer and inject js, css, title and the current view.
-       */ 
-      $this->load->view('admin/common/main', $data);
+    if (!$this->session->logged_in && !in_array(uri_string(), $alowedRoutes)){
+      redirect("backend/login");
+      exit();
+    } else {
+      if(!$this->session->time) {
+        $this->session->set_userdata('time', time() + (60*5));
+        redirect("admin");
+      }
     }
   }
 
   public function login($params = null)
   {
-    $resources['headeCss']  = ['bootstrap.min.css', 'main.css'];
-    $resources['headeJs']   = null;
-    $resources['footerJs']  = ['bootstrap.min.js'];
-    $data['login_data']     = 'some data';
-    $pages                  = 'admin/login';
+    // print_r(password_hash('123', PASSWORD_DEFAULT));
+    $resources['headeCss'] = ['bootstrap.min.css', 'main.css'];
+    $resources['headeJs'] = null;
+    $resources['footerJs'] = ['bootstrap.min.js'];
+    $data['login_data'] = 'some data';
+    $data['login_error'] = $this->session->flashdata('login-error');
+    $pages = 'admin/login';
     $this->layout_generator->init($pages, $data, $resources, 'Login Page', 'admin/common/main');
-    // $this->mainLayout($pages, $data, $resources, 'Login Page', 'admin/common/main');
-    print_r($this->_sessionObject->user);
+  }
+
+  protected function returnToLogin($falsh = null)
+  {
+    if ($falsh) {
+      $this->session->set_flashdata($falsh['name'], $falsh['value']);
+    }
+    redirect('/backend/login');
   }
 
   public function validateLogin()
   {
+    $this->load->library('form_validation');
+    $this->load->model('user_model');
+    $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+    $this->form_validation->set_rules('password', 'Password', 'required|min_length[3]');
     // Create user session
-    $this->_sessionObject->user = 'Rali Dimitrov';
+    if ($this->form_validation->run() === TRUE) {
+      $email = $this->input->post('email');
+      $password = $this->input->post('password');
+      $user = $this->user_model->getUser($email);
+      if ($user) {
+        var_dump(password_verify($password, $user['password']));
+        if (password_verify($password, $user['password'])) {
+          $this->session->set_userdata('user_name', 'Rali Dimitrov');
+          $this->session->set_userdata('logged_in', true);
+          redirect("admin");
+        } else {
+          $this->returnToLogin(['name'=>'login-error', 'value' => 'Please try again!']);
+        }
+      } else {
+        $this->returnToLogin(['name'=>'login-error', 'value' => 'You are not allowed!']);
+      }
+    } else {
+      $this->returnToLogin(['name'=>'login-error', 'value' => validation_errors()]);
+    }
   }
 
   public function logout()
   {
-    // destroy user session
-    $this->_sessionObject->destroy();
+    $this->session->sess_destroy();
+    $this->returnToLogin();
   }
 }

@@ -1,5 +1,10 @@
 <div class="container">
   <div class="login-form-wrapper">
+  <?php if ($login_error) : ?>
+    <div class="alert alert-danger" role="alert">
+      <?php echo $login_error; ?>
+    </div>
+  <?php endif; ?>
     <?php echo form_open('backend/validateLogin'); ?>
       <div class="form-group">
         <label for="email">Email address</label>
