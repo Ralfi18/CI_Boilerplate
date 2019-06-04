@@ -1,6 +1,6 @@
 <div class="container">
   <div class="login-form-wrapper">
-    <?php echo form_open('backend/login'); ?>
+    <?php echo form_open('backend/validateLogin'); ?>
       <div class="form-group">
         <label for="email">Email address</label>
         <?php echo form_input([
@@ -11,9 +11,7 @@
           'aria-describedby'=>'email',
           'placeholder' => 'Please ener your email...'
         ]); ?>
-        <!-- <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"> -->
       </div>
-
       <div class="form-group">
         <label for="password">password</label>
         <?php echo form_password([
@@ -29,7 +27,6 @@
       'value'=>'Login',
       'class'=>'btn btn-primary'
     ]); ?>
-
     <?php echo form_close(); ?>
   </div>
 </div>
