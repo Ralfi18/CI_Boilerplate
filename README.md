@@ -14,10 +14,16 @@
     ...
   root/ 
     -application/
+      -core/
+        -MY_Controller.php
       -config
-      -controllers
+      -controllers/
+        -admin/
+          -Index_Controller.php
+        -Index_Controller.php
       -models
-      -helpers
+      -helpers/
+        -Layout_generator
       -libraries
       ...
     -system/
