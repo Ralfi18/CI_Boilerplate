@@ -26,15 +26,17 @@
 </pre>
 <h4>Virtual Host settings</h4>
 <pre>
-  <VirtualHost *:80>
-      ServerAdmin steral.eu
-      ServerName steral.eu
-      DocumentRoot "/var/www/html/steral/public"
-      DirectoryIndex index.php
-      <Directory "/var/www/html/steral.eu/public">
-          Options       All
-          AllowOverride All
-          Require       all granted
-      </Directory>
-  </VirtualHost>
-</code>
+  <code>
+    <VirtualHost *:80>
+        ServerAdmin steral.eu
+        ServerName steral.eu
+        DocumentRoot "/var/www/html/steral/public"
+        DirectoryIndex index.php
+        <Directory "/var/www/html/steral.eu/public">
+            Options       All
+            AllowOverride All
+            Require       all granted
+        </Directory>
+    </VirtualHost>
+  </code>
+</pre>
