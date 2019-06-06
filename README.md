@@ -26,7 +26,7 @@
 </pre>
 <h4>Virtual Host settings</h4>
 <pre>
-  <VirtualHost *:80>
+  <!-- <VirtualHost *:80>
       ServerAdmin steral.eu
       ServerName steral.eu
       DocumentRoot "/var/www/html/steral/public"
@@ -36,5 +36,5 @@
           AllowOverride All
           Require       all granted
       </Directory>
-  </VirtualHost>
+  </VirtualHost> -->
 </pre>
