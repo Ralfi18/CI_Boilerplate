@@ -1,7 +1,7 @@
 # CI_Boilerplate
 <h4>Setup</h4>
 <ul>
-  <li>Create Virtual Host http://steral.eu or change it in /root/application/config</li>
+  <li>Create Virtual Host and change it in /root/application/config</li>
   <li>Use the sql file included in the repo or create your own and change config (tabe uses needed for authentication)</li>
 </ul>
 
