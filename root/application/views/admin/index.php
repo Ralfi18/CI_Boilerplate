@@ -1,0 +1,1 @@
+<h3>Hello, <?php echo $user_name ? $user_name : ''; ?>!</h3>

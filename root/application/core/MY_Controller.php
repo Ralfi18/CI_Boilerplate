@@ -13,6 +13,7 @@ class Public_Controller extends MY_Controller {
 	public function __construct()
 	{
     parent::__construct();
+    $this->load->library('layout_generator');
 	}
 }
 /*
@@ -39,7 +40,7 @@ class Admin_Controller extends MY_Controller {
       exit();
     } else {
       if(!$this->session->time) {
-        $this->session->set_userdata('time', time() + (60*5));
+        $this->session->set_userdata('time', time() + (60*10));
         redirect("admin");
       }
     }
@@ -77,7 +78,6 @@ class Admin_Controller extends MY_Controller {
       $password = $this->input->post('password');
       $user = $this->user_model->getUser($email);
       if ($user) {
-        var_dump(password_verify($password, $user['password']));
         if (password_verify($password, $user['password'])) {
           $this->session->set_userdata('user_name', 'Rali Dimitrov');
           $this->session->set_userdata('logged_in', true);

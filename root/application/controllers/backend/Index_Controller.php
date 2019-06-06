@@ -5,7 +5,12 @@ class Index_Controller extends Admin_Controller {
 
   public function index()
   {
-     echo 'admin';
-     echo $this->session->user_name;
+    $resources['headeCss'] = ['bootstrap.min.css', 'main.css'];
+    $resources['headeJs'] = null;
+    $resources['footerJs'] = ['bootstrap.min.js'];
+    $data['user_name'] = $this->session->user_name;
+    // $data['login_error'] = $this->session->flashdata('login-error');
+    $pages = 'admin/index';
+    $this->layout_generator->init($pages, $data, $resources, 'Login Page', 'frontend/common/main');
   }
 }

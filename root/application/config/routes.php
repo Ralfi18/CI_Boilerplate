@@ -54,6 +54,6 @@ $route['admin'] = 'backend/Index_Controller/index';
 $route['backend/validateLogin'] = 'backend/Index_Controller/validateLogin';
 $route['backend/logout'] = 'backend/Index_Controller/logout';
 $route['backend/login'] = 'backend/Index_Controller/login';
-$route['default_controller'] = 'Index_Controller';
+$route['default_controller'] = 'Index_Controller/index';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
