@@ -25,7 +25,7 @@
   ..
 </pre>
 <h4>Virtual Host settings</h4>
-<code>
+<pre>
   <VirtualHost *:80>
       ServerAdmin steral.eu
       ServerName steral.eu
@@ -37,4 +37,4 @@
           Require       all granted
       </Directory>
   </VirtualHost>
-</code>
+</pre>
