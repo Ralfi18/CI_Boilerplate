@@ -17,6 +17,11 @@ class Index_Controller extends Public_Controller {
     //   $this->{'show404'}();
     //   return;
     // }
+    $this->load->model('pages_model');
+    if ($segment_1) {
+     $page = $this->pages_model->getPage($segment_1);
+     debug_helper( $page );
+    }
 
     $resources['headeCss'] = ['bootstrap.min.css', 'main.css'];
     $resources['headeJs'] = null;
