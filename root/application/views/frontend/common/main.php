@@ -3,7 +3,7 @@ $heder['css'] = $headeCss;
 $heder['js'] = $headeJs;
 $footer['js'] = $footerJs;
 
-$this->load->view('frontend/common/header', $heder);
+$this->load->view($path.'header', $heder);
 
 if ($page && !is_array($page)) {
   $this->load->view( $page, $data);
@@ -13,4 +13,4 @@ if ($page && !is_array($page)) {
   }
 }
 
-$this->load->view('frontend/common/footer', $footer);
+$this->load->view($path.'footer', $footer);

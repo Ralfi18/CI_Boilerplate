@@ -40,7 +40,7 @@ class Layout_generator {
      * TODO: create data for SEO
      */
     $data['seo'] = NULL;  
-    /*
+    /**
      *  title of the page
      */
     $data['title'] = $this->title;
@@ -57,6 +57,7 @@ class Layout_generator {
     /**
      *  Load main template width header and footer and inject js, css, title and the current view.
      */ 
-    $this->CI->load->view($this->path, $data);
+    $data['path'] = $this->path;
+    $this->CI->load->view($this->path.'main', $data);
   }
 }

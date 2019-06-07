@@ -11,6 +11,6 @@ class Index_Controller extends Public_Controller {
     $data['login_data'] = 'some data';
     // $data['login_error'] = $this->session->flashdata('login-error');
     $pages = 'frontend/index';
-    $this->layout_generator->init($pages, $data, $resources, 'Login Page', 'frontend/common/main');
+    $this->layout_generator->init($pages, $data, $resources, 'Login Page', 'frontend/common/');
   }
 }

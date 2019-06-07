@@ -1,8 +1,18 @@
 <?php
+/**
+ * add varaiables
+ */
 $heder['css'] = $headeCss;
 $heder['js'] = $headeJs;
 $footer['js'] = $footerJs;
-$this->load->view('admin/common/header', $heder);
+/**
+ * add header view
+ */
+$this->load->view($path.'header', $heder);
+/**
+ * add main view/s and there data
+ */
+
 if ($page && !is_array($page)) {
   $this->load->view($page, $data);
 } else if ($page && count($page) > 0) {
@@ -10,5 +20,7 @@ if ($page && !is_array($page)) {
     $this->load->view($singlePage, $data);
   }
 }
-
-$this->load->view('admin/common/footer', $footer);
+/**
+ * add footer view
+ */
+$this->load->view($path.'footer', $footer);

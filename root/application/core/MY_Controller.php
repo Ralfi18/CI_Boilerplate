@@ -55,7 +55,7 @@ class Admin_Controller extends MY_Controller {
     $data['login_data'] = 'some data';
     $data['login_error'] = $this->session->flashdata('login-error');
     $pages = 'admin/login';
-    $this->layout_generator->init($pages, $data, $resources, 'Login Page', 'admin/common/main');
+    $this->layout_generator->init($pages, $data, $resources, 'Login Page', 'admin/common/');
   }
 
   protected function returnToLogin($falsh = null)

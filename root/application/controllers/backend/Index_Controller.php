@@ -11,6 +11,6 @@ class Index_Controller extends Admin_Controller {
     $data['user_name'] = $this->session->user_name;
     // $data['login_error'] = $this->session->flashdata('login-error');
     $pages = 'admin/index';
-    $this->layout_generator->init($pages, $data, $resources, 'Login Page', 'frontend/common/main');
+    $this->layout_generator->init($pages, $data, $resources, 'Login Page', 'frontend/common/');
   }
 }
