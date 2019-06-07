@@ -1,6 +1,6 @@
 CREATE TABLE `users`
 (
-  `id` int PRIMARY KEY,
+  `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `name` varchar(100),
   `email` varchar(150),
   `password` text,
@@ -12,7 +12,7 @@ CREATE TABLE `users`
 
 CREATE TABLE `images`
 (
-  `id` int PRIMARY KEY,
+  `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `page_id` int,
   `title` varchar(100),
   `type` int,
@@ -24,13 +24,13 @@ CREATE TABLE `images`
 
 CREATE TABLE `menus`
 (
-  `id` int PRIMARY KEY,
+  `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY ,
   `name` varchar(50)
 );
 
 CREATE TABLE `pages`
 (
-  `id` int PRIMARY KEY,
+  `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY ,
   `menu_id` int,
   `label` varchar(100),
   `link` varchar(100),
@@ -44,7 +44,7 @@ CREATE TABLE `pages`
 
 CREATE TABLE `content`
 (
-  `id` int PRIMARY KEY,
+  `id` int NOT NULL AUTO_INCREMENT  PRIMARY KEY,
   `body` varchar(150),
   `page_id` int,
   `type` int,
@@ -54,19 +54,19 @@ CREATE TABLE `content`
 
 CREATE TABLE `page_types`
 (
-  `id` int PRIMARY KEY,
+  `id` int NOT NULL AUTO_INCREMENT  PRIMARY KEY,
   `name` varchar(50)
 );
 
 CREATE TABLE `image_types`
 (
-  `id` int PRIMARY KEY,
+  `id` int NOT NULL AUTO_INCREMENT  PRIMARY KEY,
   `name` varchar(50)
 );
 
 CREATE TABLE `content_types`
 (
-  `id` int PRIMARY KEY,
+  `id` int NOT NULL AUTO_INCREMENT  PRIMARY KEY,
   `name` varchar(50)
 );
 
