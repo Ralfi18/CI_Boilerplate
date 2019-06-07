@@ -5,6 +5,11 @@
   <li>Use the sql file included in the repo or create your own and change config (tabe uses needed for authentication)</li>
 </ul>
 
+<h4>Database</h4>
+<p>
+Use some of the SQL files with command <code> source /path/to/file/new_table.sql</code>
+</p>
+
 <h4>Structure</h4>
 <pre>
   public/
