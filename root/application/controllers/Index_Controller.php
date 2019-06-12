@@ -18,18 +18,31 @@ class Index_Controller extends Public_Controller {
     //   return;
     // }
     $this->load->model('pages_model');
-    if ($segment_1) {
-     $page = $this->pages_model->getPage($segment_1);
-     debug_helper( $page );
-    }
 
     $resources['headeCss'] = ['bootstrap.min.css', 'main.css'];
     $resources['headeJs'] = null;
     $resources['footerJs'] = ['bootstrap.min.js'];
-    $data['login_data'] = 'some data';
+    $data = [];    
     // $data['login_error'] = $this->session->flashdata('login-error');
     $pages = 'frontend/index';
-    $this->layout_generator->init($pages, $data, $resources, 'Login Page', 'frontend/common/');
+    $title = '';
+    if ($segment_1) {
+      $page = $this->pages_model->getPage($segment_1);
+      if ($page) {
+        $title = $page['label'];
+        $data['body'] = $page['body'];
+      } else {
+        $title = $page['404'];
+        $data['body'] = '404 page body';
+      }
+
+      // debug_helper( $page );
+    } else {
+      $title = 'home page';
+      $data['body'] = 'home page body';
+    }
+
+    $this->layout_generator->init($pages, $data, $resources, $title, 'frontend/common/');
   }
   
   public function testAction($var = null, $var_2 = null)

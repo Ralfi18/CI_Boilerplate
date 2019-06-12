@@ -4,7 +4,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * Base controller
  */ 
 class MY_Controller extends CI_Controller {
-	public function __construct() { parent::__construct(); }
+	public function __construct() { 
+    parent::__construct(); 
+    $this->load->library('layout_generator');
+  }
 }
 /*
  * Public area base controller extendig the basic controller
@@ -13,7 +16,7 @@ class Public_Controller extends MY_Controller {
 	public function __construct()
 	{
     parent::__construct();
-    $this->load->library('layout_generator');
+    // $this->load->library('layout_generator');
 	}
 }
 /*
@@ -26,7 +29,7 @@ class Admin_Controller extends MY_Controller {
     parent::__construct();
     // libs
     $this->load->library('session');
-    $this->load->library('layout_generator');
+    // $this->load->library('layout_generator');
     // helpers
     $this->load->helper('form');
     $alowedRoutes = ["backend/login", "backend/validateLogin", "backend/logout"];
